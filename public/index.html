@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.paypal.com/sdk/js?client-id=AelTXaRbKPEDgF7ks2jU2_7pDfBTX4gIfHn7ZUBDzr1RbuP3qGDdcFpHpTx8n3x74j0ZOE9VHBN1YdpG"></script>
+</head>
+<body>
+    <div id="paypal-button-container"></div>
+    <script>
+        paypal.Buttons({
+            createOrder: function() {
+                return fetch('http://localhost:3000/orders', {
+                    method: 'post',
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                }).then(function(res) {
+                    return res.json();
+                }).then(function(data) {
+                    console.log(data.orderID)
+                    return data.orderID
+                });
+            }
+        }).render('#paypal-button-container')
+    </script>
+</body>
+</html>
