@@ -11,10 +11,50 @@ ordersRouter.route('/')
     request.requestBody({
         intent: 'CAPTURE',
         purchase_units: [{
-        amount: {
-            currency_code: 'USD',
-            value: '220.00'
-        }
+            amount: {
+                currency_code: 'USD',
+                value: '150.00',
+                breakdown: {
+                  item_total: {
+                    currency_code: "USD",
+                    value: "135.00"
+                  },
+                  tax_total: {
+                    currency_code: "USD",
+                    value: "15.00"
+                  }
+                }
+            },
+            items: [
+                {
+                    name: "T-Shirt",
+                    description: "Green XL",
+                    unit_amount: {
+                        currency_code: "USD",
+                        value: "90.00"
+                    },
+                    tax: {
+                        currency_code: "USD",
+                        value: "10.00"
+                    },
+                    quantity: "1",
+                    category: "PHYSICAL_GOODS"
+                },
+                {
+                    name: "Shoes",
+                    description: "Running, Size 10.5",
+                    unit_amount: {
+                        currency_code: "USD",
+                        value: "45.00"
+                    },
+                    tax: {
+                        currency_code: "USD",
+                        value: "5.00"
+                    },
+                    quantity: "1",
+                    category: "PHYSICAL_GOODS"
+                }
+            ]
         }]
     });
 
